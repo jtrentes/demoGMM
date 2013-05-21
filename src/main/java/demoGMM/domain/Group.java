@@ -118,7 +118,7 @@ public class Group
 	 * @ordered
 	 */
 	public void setName(String myName) {
-   if(myName.isEmpty())
+  if(myName.isEmpty())
      throw new IllegalArgumentException("Name can't be empty");
      
    this.name = myName.trim();
