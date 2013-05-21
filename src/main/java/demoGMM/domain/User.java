@@ -9,7 +9,7 @@ import java.util.Date;
  */
 
 @javax.persistence.Entity
-public abstract class User
+public class User
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,6 +73,15 @@ public abstract class User
 	 * @generated
 	 * @ordered
 	 */
+	
+	@javax.persistence.OneToOne(cascade = javax.persistence.CascadeType.ALL)
+	protected Profil profil;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
 	@javax.persistence.Id
 	@javax.persistence.Column(nullable = false)
 	protected Long id;
@@ -84,6 +93,18 @@ public abstract class User
 	 */
 	public User(){
 		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public boolean isAdmin() {
+		// TODO : to implement
+		return false;	
 	}
 
 	/**
@@ -105,6 +126,25 @@ public abstract class User
 		}	
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void basicSetProfil(Profil myProfil) {
+		if (this.profil != myProfil) {
+			if (myProfil != null){
+				if (this.profil != myProfil) {
+					Profil oldprofil = this.profil;
+					this.profil = myProfil;
+					if (oldprofil != null)
+						oldprofil.unsetUser();
+				}
+			}
+		}	
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -165,6 +205,16 @@ public abstract class User
 		return this.group;	
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public Profil getProfil() {
+		return this.profil;	
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -242,6 +292,18 @@ public abstract class User
 	 * @generated
 	 * @ordered
 	 */
+	public void setProfil(Profil myProfil) {
+		this.basicSetProfil(myProfil);
+		myProfil.basicSetUser(this);
+			
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
 	public void unsetLogin() {
 		this.login = "";	
 	}
@@ -298,6 +360,20 @@ public abstract class User
 		Group oldgroup = this.group;
 		this.group = null;
 		oldgroup.removeUsers(this);	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void unsetProfil() {
+		if (this.profil == null)
+			return;
+		Profil oldprofil = this.profil;
+		this.profil = null;
+		oldprofil.unsetUser();	
 	}
 	
 }

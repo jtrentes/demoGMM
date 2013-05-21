@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>demoGMM</artifactId>
-  <name>demoGMM</name>
-  <groupId>demoGMM</groupId>
-  <!--
-    * Start of user code for project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>demoGMM</artifactId>
+	<name>demoGMM</name>
+	<groupId>demoGMM</groupId>
+	<!--
+		* Start of user code for project
     -->
   <packaging>jar</packaging>
   <version>1.0.0-BUILD-SNAPSHOT</version>
@@ -17,11 +17,11 @@
   </properties>
   <!--
     * End of user code for project
-    -->
-  <build>
-    <plugins>
-      <!--
-        * Start of user code for plugins
+	  -->
+	<build>
+		<plugins>
+			<!--
+				* Start of user code for plugins
         -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -71,18 +71,18 @@
           </plugin>
       <!--
         * End of user code for plugins
-        -->    
-    </plugins>
-    <!--
-      * Start of user code for build
+		  	-->		
+		</plugins>
+		<!--
+			* Start of user code for build
       -->
     <!--
       * End of user code for build
-      -->
-  </build>
-  <dependencies>
-    <!--
-      * Start of user code for dependencies
+		  -->
+	</build>
+	<dependencies>
+		<!--
+			* Start of user code for dependencies
       -->
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -101,6 +101,6 @@
     </dependency>
     <!--
       * End of user code for dependencies
-      -->
-  </dependencies>
+		  -->
+	</dependencies>
 </project>

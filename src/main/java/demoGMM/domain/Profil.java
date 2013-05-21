@@ -1,6 +1,4 @@
 package demoGMM.domain;
-import java.util.Set;
-import java.util.HashSet;
 
 
 /**
@@ -10,7 +8,7 @@ import java.util.HashSet;
  */
 
 @javax.persistence.Entity
-public class Group
+public class Profil
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -20,7 +18,7 @@ public class Group
 	 */
 	
 	@javax.persistence.Column(nullable = false)
-	protected String name;
+	protected String avatar;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -28,8 +26,8 @@ public class Group
 	 * @ordered
 	 */
 	
-	@javax.persistence.OneToOne
-	protected static Group ADMIN_GROUP;
+	@javax.persistence.OneToOne(mappedBy = "profil2")
+	protected Theme theme;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -37,8 +35,8 @@ public class Group
 	 * @ordered
 	 */
 	
-	@javax.persistence.OneToMany(mappedBy = "group")
-	protected Set<User> users;
+	@javax.persistence.OneToOne(mappedBy = "profil")
+	protected User user;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -54,7 +52,7 @@ public class Group
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 */
-	public Group(){
+	public Profil(){
 		
 	}
 
@@ -64,8 +62,17 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public String getName() {
-		return this.name;	
+	public void basicSetTheme(Theme myTheme) {
+		if (this.theme != myTheme) {
+			if (myTheme != null){
+				if (this.theme != myTheme) {
+					Theme oldtheme = this.theme;
+					this.theme = myTheme;
+					if (oldtheme != null)
+						oldtheme.unsetProfil2();
+				}
+			}
+		}	
 	}
 	
 	/**
@@ -74,21 +81,47 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public Group getADMIN_GROUP() {
-		return this.ADMIN_GROUP;	
+	public void basicSetUser(User myUser) {
+		if (this.user != myUser) {
+			if (myUser != null){
+				if (this.user != myUser) {
+					User olduser = this.user;
+					this.user = myUser;
+					if (olduser != null)
+						olduser.unsetProfil();
+				}
+			}
+		}	
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 * @ordered
 	 */
-	public Set<User> getUsers() {
-		if(this.users == null) {
-				this.users = new HashSet<User>();
-		}
-		return (Set<User>) this.users;	
+	public String getAvatar() {
+		return this.avatar;	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public Theme getTheme() {
+		return this.theme;	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public User getUser() {
+		return this.user;	
 	}
 	
 	/**
@@ -107,12 +140,19 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public void addAllUsers(Set<User> newUsers) {
-		if (this.users == null) {
-			this.users = new HashSet<User>();
-		}
-		for (User tmp : newUsers)
-			tmp.setGroup(this);
+	public void setAvatar(String myAvatar) {
+		this.avatar = myAvatar;	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void setTheme(Theme myTheme) {
+		this.basicSetTheme(myTheme);
+		myTheme.basicSetProfil2(this);
 			
 	}
 	
@@ -122,85 +162,48 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public void removeAllUsers(Set<User> newUsers) {
-		if(this.users == null) {
-			return;
-		}
-		
-		this.users.removeAll(newUsers);	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated NOT
-	 * @ordered
-	 */
-	public void setName(String myName) {
-  if(myName.isEmpty())
-     throw new IllegalArgumentException("Name can't be empty");
-     
-   this.name = myName.trim();
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void setADMIN_GROUP(Group myADMIN_GROUP) {
-		this.ADMIN_GROUP = myADMIN_GROUP;	
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void addUsers(User newUsers) {
-		if(this.users == null) {
-			this.users = new HashSet<User>();
-		}
-		
-		if (this.users.add(newUsers))
-			newUsers.basicSetGroup(this);	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void unsetName() {
-		this.name = "";	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void unsetADMIN_GROUP() {
-		this.ADMIN_GROUP = new Group();	
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void removeUsers(User oldUsers) {
-		if(this.users == null)
-			return;
-		
-		if (this.users.remove(oldUsers))
-			oldUsers.unsetGroup();
+	public void setUser(User myUser) {
+		this.basicSetUser(myUser);
+		myUser.basicSetProfil(this);
 			
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void unsetAvatar() {
+		this.avatar = "";	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void unsetTheme() {
+		if (this.theme == null)
+			return;
+		Theme oldtheme = this.theme;
+		this.theme = null;
+		oldtheme.unsetProfil2();	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void unsetUser() {
+		if (this.user == null)
+			return;
+		User olduser = this.user;
+		this.user = null;
+		olduser.unsetProfil();	
 	}
 	
 }

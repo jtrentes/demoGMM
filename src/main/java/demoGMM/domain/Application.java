@@ -10,7 +10,7 @@ import java.util.HashSet;
  */
 
 @javax.persistence.Entity
-public class Group
+public class Application
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -19,8 +19,10 @@ public class Group
 	 * @ordered
 	 */
 	
-	@javax.persistence.Column(nullable = false)
-	protected String name;
+	@javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL)
+	@javax.persistence.JoinTable
+	@javax.persistence.JoinColumn(nullable = false)
+	protected Set<Theme> theme2;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -28,17 +30,9 @@ public class Group
 	 * @ordered
 	 */
 	
-	@javax.persistence.OneToOne
-	protected static Group ADMIN_GROUP;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	@javax.persistence.OneToMany(mappedBy = "group")
-	protected Set<User> users;
+	@javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL)
+	@javax.persistence.JoinTable
+	protected Set<Group> groups;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -54,7 +48,7 @@ public class Group
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 */
-	public Group(){
+	public Application(){
 		
 	}
 
@@ -64,8 +58,9 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public String getName() {
-		return this.name;	
+	public Theme defaultTheme() {
+		// TODO : to implement
+		return new Theme();	
 	}
 	
 	/**
@@ -74,21 +69,24 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public Group getADMIN_GROUP() {
-		return this.ADMIN_GROUP;	
+	public Set<Theme> getTheme2() {
+		if(this.theme2 == null) {
+				this.theme2 = new HashSet<Theme>();
+		}
+		return (Set<Theme>) this.theme2;	
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 * @ordered
 	 */
-	public Set<User> getUsers() {
-		if(this.users == null) {
-				this.users = new HashSet<User>();
+	public Set<Group> getGroups() {
+		if(this.groups == null) {
+				this.groups = new HashSet<Group>();
 		}
-		return (Set<User>) this.users;	
+		return (Set<Group>) this.groups;	
 	}
 	
 	/**
@@ -107,13 +105,11 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public void addAllUsers(Set<User> newUsers) {
-		if (this.users == null) {
-			this.users = new HashSet<User>();
+	public void addAllTheme2(Set<Theme> newTheme2) {
+		if (this.theme2 == null) {
+			this.theme2 = new HashSet<Theme>();
 		}
-		for (User tmp : newUsers)
-			tmp.setGroup(this);
-			
+		this.theme2.addAll(newTheme2);	
 	}
 	
 	/**
@@ -122,25 +118,25 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public void removeAllUsers(Set<User> newUsers) {
-		if(this.users == null) {
+	public void addAllGroups(Set<Group> newGroups) {
+		if (this.groups == null) {
+			this.groups = new HashSet<Group>();
+		}
+		this.groups.addAll(newGroups);	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void removeAllTheme2(Set<Theme> newTheme2) {
+		if(this.theme2 == null) {
 			return;
 		}
 		
-		this.users.removeAll(newUsers);	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated NOT
-	 * @ordered
-	 */
-	public void setName(String myName) {
-  if(myName.isEmpty())
-     throw new IllegalArgumentException("Name can't be empty");
-     
-   this.name = myName.trim();
+		this.theme2.removeAll(newTheme2);	
 	}
 	
 	/**
@@ -149,23 +145,12 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public void setADMIN_GROUP(Group myADMIN_GROUP) {
-		this.ADMIN_GROUP = myADMIN_GROUP;	
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void addUsers(User newUsers) {
-		if(this.users == null) {
-			this.users = new HashSet<User>();
+	public void removeAllGroups(Set<Group> newGroups) {
+		if(this.groups == null) {
+			return;
 		}
 		
-		if (this.users.add(newUsers))
-			newUsers.basicSetGroup(this);	
+		this.groups.removeAll(newGroups);	
 	}
 	
 	/**
@@ -174,8 +159,12 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetName() {
-		this.name = "";	
+	public void addTheme2(Theme newTheme2) {
+		if(this.theme2 == null) {
+			this.theme2 = new HashSet<Theme>();
+		}
+		
+		this.theme2.add(newTheme2);	
 	}
 	
 	/**
@@ -184,23 +173,38 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetADMIN_GROUP() {
-		this.ADMIN_GROUP = new Group();	
+	public void addGroups(Group newGroups) {
+		if(this.groups == null) {
+			this.groups = new HashSet<Group>();
+		}
+		
+		this.groups.add(newGroups);	
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 * @ordered
 	 */
-	public void removeUsers(User oldUsers) {
-		if(this.users == null)
+	public void removeTheme2(Theme oldTheme2) {
+		if(this.theme2 == null)
 			return;
 		
-		if (this.users.remove(oldUsers))
-			oldUsers.unsetGroup();
-			
+		this.theme2.remove(oldTheme2);	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void removeGroups(Group oldGroups) {
+		if(this.groups == null)
+			return;
+		
+		this.groups.remove(oldGroups);	
 	}
 	
 }

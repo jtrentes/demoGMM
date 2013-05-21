@@ -1,6 +1,4 @@
 package demoGMM.domain;
-import java.util.Set;
-import java.util.HashSet;
 
 
 /**
@@ -10,7 +8,7 @@ import java.util.HashSet;
  */
 
 @javax.persistence.Entity
-public class Group
+public class Theme
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -28,8 +26,8 @@ public class Group
 	 * @ordered
 	 */
 	
-	@javax.persistence.OneToOne
-	protected static Group ADMIN_GROUP;
+	@javax.persistence.Column(nullable = false)
+	protected String colorText;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -37,8 +35,17 @@ public class Group
 	 * @ordered
 	 */
 	
-	@javax.persistence.OneToMany(mappedBy = "group")
-	protected Set<User> users;
+	@javax.persistence.Column(nullable = false)
+	protected String background;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	@javax.persistence.OneToOne
+	protected Profil profil2;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -54,10 +61,29 @@ public class Group
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 */
-	public Group(){
+	public Theme(){
 		
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void basicSetProfil2(Profil myProfil2) {
+		if (this.profil2 != myProfil2) {
+			if (myProfil2 != null){
+				if (this.profil2 != myProfil2) {
+					Profil oldprofil2 = this.profil2;
+					this.profil2 = myProfil2;
+					if (oldprofil2 != null)
+						oldprofil2.unsetTheme();
+				}
+			}
+		}	
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -74,21 +100,28 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public Group getADMIN_GROUP() {
-		return this.ADMIN_GROUP;	
+	public String getColorText() {
+		return this.colorText;	
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 * @ordered
 	 */
-	public Set<User> getUsers() {
-		if(this.users == null) {
-				this.users = new HashSet<User>();
-		}
-		return (Set<User>) this.users;	
+	public String getBackground() {
+		return this.background;	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public Profil getProfil2() {
+		return this.profil2;	
 	}
 	
 	/**
@@ -107,40 +140,8 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public void addAllUsers(Set<User> newUsers) {
-		if (this.users == null) {
-			this.users = new HashSet<User>();
-		}
-		for (User tmp : newUsers)
-			tmp.setGroup(this);
-			
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void removeAllUsers(Set<User> newUsers) {
-		if(this.users == null) {
-			return;
-		}
-		
-		this.users.removeAll(newUsers);	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated NOT
-	 * @ordered
-	 */
 	public void setName(String myName) {
-  if(myName.isEmpty())
-     throw new IllegalArgumentException("Name can't be empty");
-     
-   this.name = myName.trim();
+		this.name = myName;	
 	}
 	
 	/**
@@ -149,23 +150,30 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public void setADMIN_GROUP(Group myADMIN_GROUP) {
-		this.ADMIN_GROUP = myADMIN_GROUP;	
+	public void setColorText(String myColorText) {
+		this.colorText = myColorText;	
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 * @ordered
 	 */
-	public void addUsers(User newUsers) {
-		if(this.users == null) {
-			this.users = new HashSet<User>();
-		}
-		
-		if (this.users.add(newUsers))
-			newUsers.basicSetGroup(this);	
+	public void setBackground(String myBackground) {
+		this.background = myBackground;	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void setProfil2(Profil myProfil2) {
+		this.basicSetProfil2(myProfil2);
+		myProfil2.basicSetTheme(this);
+			
 	}
 	
 	/**
@@ -184,23 +192,32 @@ public class Group
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetADMIN_GROUP() {
-		this.ADMIN_GROUP = new Group();	
+	public void unsetColorText() {
+		this.colorText = "";	
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 * @ordered
 	 */
-	public void removeUsers(User oldUsers) {
-		if(this.users == null)
+	public void unsetBackground() {
+		this.background = "";	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void unsetProfil2() {
+		if (this.profil2 == null)
 			return;
-		
-		if (this.users.remove(oldUsers))
-			oldUsers.unsetGroup();
-			
+		Profil oldprofil2 = this.profil2;
+		this.profil2 = null;
+		oldprofil2.unsetTheme();	
 	}
 	
 }
