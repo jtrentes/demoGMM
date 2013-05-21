@@ -114,11 +114,14 @@ public class Group
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
 	public void setName(String myName) {
-		this.name = myName;	
+   if(myName.isEmpty())
+     throw new IllegalArgumentException("Name can't be empty");
+     
+   this.name = myName.trim();
 	}
 	
 	/**
