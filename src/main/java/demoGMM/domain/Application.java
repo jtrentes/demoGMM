@@ -46,16 +46,6 @@ public class Application
 	 * @ordered
 	 */
 	
-	@javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL)
-	@javax.persistence.JoinTable
-	protected Set<Group> groups;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	@javax.persistence.OneToOne(mappedBy = "application234")
 	protected MyClass2 myclass2;
 	/**
@@ -69,6 +59,16 @@ public class Application
 	@javax.persistence.JoinTable
 	@javax.persistence.JoinColumn(nullable = false)
 	protected Set<Theme> theme2;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	@javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL)
+	@javax.persistence.JoinTable
+	protected Set<Group> groups;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
