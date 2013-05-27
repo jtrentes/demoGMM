@@ -26,8 +26,8 @@ public class Profil
 	 * @ordered
 	 */
 	
-	@javax.persistence.OneToOne(mappedBy = "profil2")
-	protected Theme theme;
+	@javax.persistence.OneToOne(mappedBy = "profil")
+	protected User user;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -35,8 +35,8 @@ public class Profil
 	 * @ordered
 	 */
 	
-	@javax.persistence.OneToOne(mappedBy = "profil")
-	protected User user;
+	@javax.persistence.OneToOne(mappedBy = "profil2")
+	protected Theme theme;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->

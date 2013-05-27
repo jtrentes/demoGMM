@@ -6,10 +6,12 @@
 	<persistence-unit name="demoGMMUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>demoGMM.domain.Theme</class>
+		<class>demoGMM.domain.MyClass2</class>
 		<class>demoGMM.domain.Application</class>
-		<class>demoGMM.domain.Group</class>
 		<class>demoGMM.domain.Profil</class>
+		<class>demoGMM.domain.Group</class>
 		<class>demoGMM.domain.User</class>
+		<class>demoGMM.domain.MyClass</class>
 		
 		<properties>
 	      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
