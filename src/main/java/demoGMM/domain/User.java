@@ -64,8 +64,9 @@ public class User
 	 * @ordered
 	 */
 	
-	@javax.persistence.OneToOne(cascade = javax.persistence.CascadeType.ALL)
-	protected Profil profil;
+	@javax.persistence.ManyToOne
+	@javax.persistence.JoinColumn(nullable = false)
+	protected Group group;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -73,9 +74,8 @@ public class User
 	 * @ordered
 	 */
 	
-	@javax.persistence.ManyToOne
-	@javax.persistence.JoinColumn(nullable = false)
-	protected Group group;
+	@javax.persistence.OneToOne(cascade = javax.persistence.CascadeType.ALL)
+	protected Profil profil;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
